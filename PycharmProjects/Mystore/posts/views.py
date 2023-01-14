@@ -1,4 +1,5 @@
-from django.shortcuts import HttpResponse
+from django.shortcuts import HttpResponse, render
+from posts.models import Post
 import datetime
 
 
@@ -6,15 +7,22 @@ import datetime
 
 def main(reguest):
     if reguest.method == 'GET':
-        return HttpResponse('Hello! Its my project')
+        return render(reguest, 'layouts/index.html')
+
+def posts_view(reguest):
+    if reguest.method == 'GET':
+        posts = Post.objects.all()
+
+        context = {
+            'posts': posts
+        }
+
+        return render(reguest, 'posts/posts.html',context=context)
 
 
 def show_date(reguest):
-    global current_date
+    # current_date
     current_date = datetime.date.today()
     if reguest.method == 'GET':
         return HttpResponse(f'{current_date}')
 
-def say_bye(reguest):
-    if reguest.method == 'GET':
-        return HttpResponse('Goodbye user!')

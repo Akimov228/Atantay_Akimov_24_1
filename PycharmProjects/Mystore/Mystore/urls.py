@@ -1,4 +1,4 @@
-"""Mystore URL Configuration
+""" Mystore URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.1/topics/http/urls/
@@ -15,11 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from posts.views import main, show_date, say_bye
+from posts.views import main, show_date, posts_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello/', main),
+    path('', main),
     path('now_date/', show_date),
-    path('goodbye/', say_bye)
+    path('posts/', posts_view),
+
 ]
