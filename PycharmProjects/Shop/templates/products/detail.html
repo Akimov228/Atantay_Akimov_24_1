@@ -2,7 +2,7 @@
 
 {% block content %}
     <style type="text/css">
-        .container {
+        .product {
             display: flex;
             justify-content: space-between;
             width: 80%;
@@ -10,8 +10,21 @@
             flex-wrap: wrap;
             padding: 10px;
         }
+        .reviews {
+            margin-top: 20px;
+        }
+        .review {
+            background: #242b2e;
+            color: #fff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .product > img {
+            width: 100%;
+        }
     </style>
     <div class="product">
+        <img src="/media/{{ product.image }}/" alt="">
         <h1>{{ product.title }}</h1>
         <h4>{{ product.description }}</h4>
         <h3>{{ product.rate }}</h3>

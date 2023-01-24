@@ -1,20 +1,25 @@
 {% extends 'layouts/index.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'products.css' %}">
+{% endblock %}
+
 
 {% block content %}
-    <style type="text/css">
-        .products {
-            display: flex;
-            justify-content: space-between;
-            width: 80%;
-            margin-left: 10%;
-            flex-wrap: wrap;
-            padding: 10px;
-        }
-    </style>
     <div class="products">
         {% for product in products %}
             <div class="card" style="width: 18rem;">
               <div class="card-body">
+                {% if product.image %}
+                    <img class="product_image" src="/media/{{ product.image }}/" alt="">
+                {% else %}
+                    <img class="product_image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAgtAN5MyoeSVyvPUl5jD_93n9u9mVsBPsug&usqp=CAU" alt="">
+
+
+
+
+                {% endif %}
                 <h5 class="card-title">{{ product.title }}</h5>
                 <h5 class="card-title">{{ product.description }}</h5>
                 <h5 class="card-title">{{ product.created_date }}</h5>
