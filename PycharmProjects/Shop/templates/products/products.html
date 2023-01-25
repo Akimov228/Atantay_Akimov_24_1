@@ -21,9 +21,9 @@
 
                 {% endif %}
                 <h5 class="card-title">{{ product.title }}</h5>
-                <h5 class="card-title">{{ product.description }}</h5>
-                <h5 class="card-title">{{ product.created_date }}</h5>
-                <a href="/products/{{ product.id }}" class="card-link">More</a>
+                <h6 class="card-title">{{ product.price }} som</h6>
+                <h6 class="card-title">{{ product.created_date }}</h6>
+                <a href="/products/{{ product.id }}" class="card-link">See more</a>
               </div>
             </div>
         {% endfor %}

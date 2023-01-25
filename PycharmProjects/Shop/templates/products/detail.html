@@ -26,9 +26,18 @@
     <div class="product">
         <img src="/media/{{ product.image }}/" alt="">
         <h1>{{ product.title }}</h1>
+
+        <h5>{{ product.price }} som</h5>
         <h4>{{ product.description }}</h4>
-        <h3>{{ product.rate }}</h3>
-        <h3>{{ product.created_date }}</h3>
+        <h3>Rate: {{ product.rate }}</h3>
+        <h3>Date of creation: {{ product.created_date }}</h3>
+    </div>
+    <div class="create_comment">
+        <form action="/products/{{ product.id }}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Add Review">
+        </form>
     </div>
         <div class="reviews">
             {% for revie in review %}
