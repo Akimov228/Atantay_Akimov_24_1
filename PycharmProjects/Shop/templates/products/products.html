@@ -15,11 +15,8 @@
                     <img class="product_image" src="/media/{{ product.image }}/" alt="">
                 {% else %}
                     <img class="product_image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAgtAN5MyoeSVyvPUl5jD_93n9u9mVsBPsug&usqp=CAU" alt="">
-
-
-
-
                 {% endif %}
+                <h5 class="card-title">Author: {{ product.author.username }}</h5>
                 <h5 class="card-title">{{ product.title }}</h5>
                 <h6 class="card-title">{{ product.price }} som</h6>
                 <h6 class="card-title">{{ product.created_date }}</h6>

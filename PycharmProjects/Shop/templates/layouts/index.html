@@ -26,11 +26,22 @@
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/products">Products</a>
+          <a class="nav-link active" href="/products">Products</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/products/create">Create product</a>
-        </li>
+        {% if user.is_anonymous %}
+            <li class="nav-item">
+              <a class="nav-link active" href="/users/login">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/users/register">Register</a>
+            </li>
+        {% else %}
+            <li class="nav-item">
+              <a class="nav-link active" href="/products/create">Create product</a>
+            <li class="nav-item">
+              <a class="nav-link active" href="/users/logout">Logout</a>
+            </li>
+        {% endif %}
         <li class="nav-item">
           <a class="nav-link disabled">Disabled</a>
         </li>

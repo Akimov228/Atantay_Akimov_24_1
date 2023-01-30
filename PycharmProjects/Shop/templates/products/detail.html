@@ -26,7 +26,7 @@
     <div class="product">
         <img src="/media/{{ product.image }}/" alt="">
         <h1>{{ product.title }}</h1>
-
+        <h5>Author:{{ product.author.username }}</h5>
         <h5>{{ product.price }} som</h5>
         <h4>{{ product.description }}</h4>
         <h3>Rate: {{ product.rate }}</h3>
@@ -42,6 +42,7 @@
         <div class="reviews">
             {% for revie in review %}
                 <div class="review">
+                    <h5>{{ revie.author.username }}</h5>
                     <h6>{{ revie.text }}</h6>
                     <p>{{ revie.created_date }}</p>
                 </div>
