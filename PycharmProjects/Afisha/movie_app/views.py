@@ -1,8 +1,15 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .serializers import MovieSerializer, DirectorSerializer, ReviewSerializer
+from .serializers import MovieSerializer, DirectorSerializer, ReviewSerializer, MovieReviewSerializer
 from .models import Movie, Director, Review
+
+
+@api_view(['GET'])
+def movie_reviews_view(request):
+    movie = Movie.objects.all()
+    serializer = MovieReviewSerializer(movie, many=True)
+    return Response(data=serializer.data)
 
 
 @api_view(['GET'])
