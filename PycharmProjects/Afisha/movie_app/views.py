@@ -56,6 +56,7 @@ def director_detail_api_view(request, id):
 
 @api_view(['GET', 'POST'])
 def movie_list_api_view(request):
+    print(request.user)
     if request.method == 'GET':
         '''List of movies'''
         movies = Movie.objects.all()
