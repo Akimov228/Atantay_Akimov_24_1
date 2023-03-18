@@ -18,7 +18,7 @@ from django.urls import path
 
 from movie_app.views import movie_list_api_view, movie_detail_api_view, director_list_api_view, \
     director_detail_api_view, review_detail_api_view, review_list_api_view, movie_reviews_view
-from users.views import registration_view, authorization_view
+from users.views import registration_view, authorization_view, confirm_user_api_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,5 +30,6 @@ urlpatterns = [
     path('api/v1/reviews/<int:id>/', review_detail_api_view),
     path('api/v1/movies/reviews/', movie_reviews_view),
     path('api/v1/users/registration/', registration_view),
+    path('api/v1/users/confirm/', confirm_user_api_view),
     path('api/v1/users/authorization/', authorization_view)
 ]
