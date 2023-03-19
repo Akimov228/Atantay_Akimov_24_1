@@ -2,14 +2,12 @@ from random import choice
 from rest_framework.authtoken.models import Token
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
 from rest_framework import status
 from rest_framework.views import APIView
 
 from .models import *
 from .serializers import UserValidateSerializer, UserLoginSerializer
 from django.contrib.auth import authenticate
-# from rest_framework.generics import *
 
 
 

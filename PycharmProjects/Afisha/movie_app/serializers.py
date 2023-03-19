@@ -38,7 +38,8 @@ class DirectorValidateSerializer(serializers.Serializer):
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
-        fields = 'id text stars '.split()
+        fields = 'id text stars'.split()
+
 
 class ReviewValidateSerializer(serializers.Serializer):
     text = serializers.CharField(required=True, max_length=200)
@@ -60,23 +61,23 @@ class MovieSerializer(serializers.ModelSerializer):
     filtered_reviews = ReviewSerializer(many=True)
     class Meta:
         model = Movie
-        fields = ['id', 'title', 'description', 'duration', 'director_name',
+        fields = ['id', 'title', 'description', 'film_duration','director_name',
                  'filtered_reviews', 'director', 'movie_reviews']
 
 
 class MovieValidateSerializer(serializers.Serializer):
     title = serializers.CharField(required=True, max_length=20, min_length=2)
     description = serializers.CharField(required=True, max_length=200)
-    duration = serializers.FloatField(required=False, max_value=5)
+    film_duration = serializers.FloatField(required=False, max_value=5)
     director_id = serializers.IntegerField(required=False)
 
     def validate_title(self, title):
         pass
 
-    def validate_duration(self, duration):
-        if duration > 5:
+    def validate_duration(self, film_duration):
+        if film_duration > 5:
             raise ValidationError('Ensure this value is less than or equal to 5.')
-        elif duration < 0:
+        elif film_duration < 0:
             raise ValidationError('Ensure this value is less than or equal to 5.')
 
     def validate_description(self, description):

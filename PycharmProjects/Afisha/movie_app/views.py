@@ -61,9 +61,9 @@ class MovieListAPIView(ListCreateAPIView):
                             status=status.HTTP_406_NOT_ACCEPTABLE)
         title = request.data.get('title')
         description = request.data.get('description')
-        duration = request.data.get('duration')
+        film_duration = request.data.get('film_duration')
         director_id = request.data.get('director_id')
-        movie = Movie.objects.create(title=title, description=description, duration=duration, director_id=director_id)
+        movie = Movie.objects.create(title=title, description=description, film_duration=film_duration,  director_id=director_id)
         # director = Director.objects.create(name=request.data.get('name'))
         return Response(data={'message': 'Data received',
                               'movie': MovieSerializer(movie).data},
@@ -96,8 +96,8 @@ class MovieDetailAPIView(APIView):
             movie.title = request.data['title']
         if request.data.get('description'):
             movie.description = request.data['description']
-        if request.data.get('duration'):
-            movie.duration = request.data['duration']
+        if request.data.get('film_duration'):
+            movie.film_duration = request.data['film_duration']
         if request.data.get('director_id'):
             movie.director_id = request.data['director_id']
         movie.save()
