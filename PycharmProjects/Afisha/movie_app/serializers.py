@@ -23,7 +23,16 @@ class MovieReviewSerializer(serializers.ModelSerializer):
 class DirectorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Director
-        fields = 'name movies_count'.split()
+        fields = 'id name movies_count'.split()
+
+class DirectorValidateSerializer(serializers.Serializer):
+    name = serializers.CharField(required=True, max_length=20, min_length=5,)
+
+    def validate_name(self, name):
+        if len(name) < 2:
+            raise ValidationError('Too short name for director')
+        elif len(name) > 25:
+            raise ValidationError('Too long name for director')
 
 
 class ReviewSerializer(serializers.ModelSerializer):
@@ -31,6 +40,19 @@ class ReviewSerializer(serializers.ModelSerializer):
         model = Review
         fields = 'id text stars '.split()
 
+class ReviewValidateSerializer(serializers.Serializer):
+    text = serializers.CharField(required=True, max_length=200)
+    stars = serializers.IntegerField(required=True)
+
+
+    def validate_text(self, text):
+        pass
+
+    def validate_stars(self, stars):
+        if stars > 5:
+            raise ValidationError('Too many stars max value=5')
+        elif stars < 1:
+            raise ValidationError('Too few stars min value=5')
 
 class MovieSerializer(serializers.ModelSerializer):
     director = DirectorSerializer()
@@ -41,14 +63,6 @@ class MovieSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'description', 'duration', 'director_name',
                  'filtered_reviews', 'director', 'movie_reviews']
 
-class DirectorValidateSerializer(serializers.Serializer):
-    name = serializers.CharField(required=True, max_length=20, min_length=5,)
-
-    def validate_name(self, name):
-        if len(name) < 2:
-            raise ValidationError('Too short name for director')
-        elif len(name) > 25:
-            raise ValidationError('Too long name for director')
 
 class MovieValidateSerializer(serializers.Serializer):
     title = serializers.CharField(required=True, max_length=20, min_length=2)
@@ -75,16 +89,3 @@ class MovieValidateSerializer(serializers.Serializer):
             raise ValidationError('this director does not exists!')
         return director_id
 
-class ReviewValidateSerializer(serializers.Serializer):
-    text = serializers.CharField(required=True, max_length=200)
-    stars = serializers.IntegerField(required=True)
-
-
-    def validate_text(self, text):
-        pass
-
-    def validate_stars(self, stars):
-        if stars > 5:
-            raise ValidationError('Too many stars max value=5')
-        elif stars < 1:
-            raise ValidationError('Too few stars min value=5')
